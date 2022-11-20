@@ -1,34 +1,43 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## Initial setup
 
-First, run the development server:
+- Next.js
+  - [TypeScript](https://nextjs.org/docs/basic-features/typescript)
+- MUI
+  - [Getting started with MUI and Next.js](https://blog.logrocket.com/getting-started-with-mui-and-next-js/)
+  - [Installation](https://mui.com/material-ui/getting-started/installation/)
+  - [TypeScript](https://mui.com/material-ui/guides/typescript/)
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## Command
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`npm run dev` runs the development server.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+`npm run build` builds the production application in the `.next` folder
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+`npm run start` starts a Node.js server which serves both statically generated and server-side rendered pages.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Components
 
-## Learn More
+### Navigation bar
 
-To learn more about Next.js, take a look at the following resources:
+- [App bar with responsive menu](https://mui.com/material-ui/react-app-bar/#app-bar-with-responsive-menu)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## File size
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Initial state
 
-## Deploy on Vercel
+Route (pages)                              Size     First Load JS
+┌ ○ /                                      4.32 kB        77.5 kB
+├   └ css/ae0e3e027412e072.css             707 B
+├   /_app                                  0 B            73.1 kB
+├ ○ /404                                   181 B          73.3 kB
+└ λ /api/hello                             0 B            73.1 kB
++ First Load JS shared by all              73.4 kB
+  ├ chunks/framework-8c5acb0054140387.js   45.4 kB
+  ├ chunks/main-b482fffd82fa7e1c.js        26.7 kB
+  ├ chunks/pages/_app-3893aca8cac41098.js  296 B
+  ├ chunks/webpack-8fa1640cc84ba8fe.js     750 B
+  └ css/ab44ce7add5c3d11.css               247 B
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+λ  (Server)  server-side renders at runtime (uses getInitialProps or getServerSideProps)
+○  (Static)  automatically rendered as static HTML (uses no initial props)
