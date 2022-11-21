@@ -1,9 +1,6 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import AppBar from "@mui/material/AppBar";
-import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/Grid";
+
+import Navigation from "../components/layout/navigation"
 
 export default function Home() {
   return (
@@ -14,30 +11,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        <AppBar position="static">
-          <Grid container direction="row" justifyContent="center" alignItems="center">
-            <Grid item xs={12} md={6}>
-              <Typography variant="h6" component="div">
-                Yuki&apos;s App
-              </Typography>
-            </Grid>
-          </Grid>
-        </AppBar>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
+      <Navigation />  
+    
     </div>
   )
 }

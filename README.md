@@ -7,6 +7,7 @@
   - [Getting started with MUI and Next.js](https://blog.logrocket.com/getting-started-with-mui-and-next-js/)
   - [Installation](https://mui.com/material-ui/getting-started/installation/)
   - [TypeScript](https://mui.com/material-ui/guides/typescript/)
+  - [CSS Baseline](https://mui.com/material-ui/react-css-baseline/)
 
 ## Command
 
@@ -15,6 +16,14 @@
 `npm run build` builds the production application in the `.next` folder
 
 `npm run start` starts a Node.js server which serves both statically generated and server-side rendered pages.
+
+## Layout
+
+Every page has a nevigation at the top and a footer at the bottom.
+
+In PC display, menu button appears in the nevigation. In mobile screen, the navigation has title and menu icon, and when click the icon, menu slides from the side to appear.
+
+The footer contains the icons to social media such as LinkedIn, GitHub, Instagram.
 
 ## Components
 
