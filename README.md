@@ -8,6 +8,8 @@
   - [Installation](https://mui.com/material-ui/getting-started/installation/)
   - [TypeScript](https://mui.com/material-ui/guides/typescript/)
   - [CSS Baseline](https://mui.com/material-ui/react-css-baseline/)
+- Font
+  - [Getting Started](https://fontsource.org/docs/getting-started)
 
 ## Command
 
