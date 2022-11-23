@@ -27,6 +27,11 @@ In PC display, menu button appears in the nevigation. In mobile screen, the navi
 
 The footer contains the icons to social media such as LinkedIn, GitHub, Instagram.
 
+## Flexbox
+
+- [A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+- [Flexbox](https://mui.com/system/flexbox/)
+
 ## Components
 
 ### Navigation bar

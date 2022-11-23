@@ -20,7 +20,7 @@ const Navigation = () => {
         justifyContent="center"
         alignItems="center"
       >
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={8}>
           <Toolbar disableGutters>
             {/* Avatar for desktop */}
             <Avatar
@@ -49,7 +49,7 @@ const Navigation = () => {
             </Link>
 
             {/* Menu icon for mobile */}
-            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+            <Box sx={{ flexGrow: 0.5, display: { xs: "flex", md: "none" } }}>
               <IconButton size="large" color="inherit">
                 <MenuIcon />
               </IconButton>
