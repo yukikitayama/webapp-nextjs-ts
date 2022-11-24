@@ -3,6 +3,7 @@ import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 
 import ExpenseTable from "../../components/expense/expense-table";
+import TimeSeriesPlot from "../../components/data-visualization/time-series-plot";
 
 const ExpensePage = () => {
   return (
@@ -18,6 +19,18 @@ const ExpensePage = () => {
           <Button variant="contained" sx={{ width: { xs: "100%", md: "auto" } }}>
             add new expense
           </Button>
+        </Grid>
+
+        <Grid item xs={12} md={4}>
+          <TimeSeriesPlot />
+        </Grid>
+
+        <Grid item xs={12} md={4}>
+          <TimeSeriesPlot />
+        </Grid>
+
+        <Grid item xs={12} md={4}>
+          <TimeSeriesPlot />
         </Grid>
 
         <Grid item xs={12}>
