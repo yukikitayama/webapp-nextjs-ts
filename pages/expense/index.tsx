@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Fragment } from "react";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
@@ -13,24 +14,29 @@ const ExpensePage = () => {
         direction="row"
         justifyContent="center"
         alignItems="center"
-        spacing={2}
+        spacing={4}
       >
         <Grid item xs={12} sx={{ textAlign: "center" }}>
-          <Button variant="contained" sx={{ width: { xs: "100%", md: "auto" } }}>
-            add new expense
-          </Button>
+          <Link href="/expense/new-expense" passHref>
+            <Button
+              variant="contained"
+              sx={{ width: { xs: "100%", md: "auto" } }}
+            >
+              add new expense
+            </Button>
+          </Link>
         </Grid>
 
         <Grid item xs={12} md={4}>
-          <TimeSeriesPlot />
+          <TimeSeriesPlot title="Daily" yAxisLabel="USD" />
         </Grid>
 
         <Grid item xs={12} md={4}>
-          <TimeSeriesPlot />
+          <TimeSeriesPlot title="Monthly" yAxisLabel="USD" />
         </Grid>
 
         <Grid item xs={12} md={4}>
-          <TimeSeriesPlot />
+          <TimeSeriesPlot title="Category" />
         </Grid>
 
         <Grid item xs={12}>
