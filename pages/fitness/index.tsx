@@ -1,14 +1,13 @@
 import Grid from "@mui/material/Grid";
 
-import TimeSeriesPlot from "../../components/data-visualization/time-series-plot";
+import FitnessPlot from "../../components/fitness/fitness-plot";
 
 const data = [
   { id: "sleep", title: "Sleep", yAxisLabel: "Minutes" },
-  { id: "deep-sleep", title: "Deep sleep", yAxisLabel: "Minutes" },
+  { id: "deep-sleep", title: "Deep sleep", yAxisLabel: "Proportion" },
   { id: "steps", title: "Steps", yAxisLabel: "Steps" },
   { id: "weight", title: "Weight", yAxisLabel: "kg" },
-  { id: "calories-burn", title: "Calories burn", yAxisLabel: "Calories" },
-  { id: "average-heart-rate", title: "Average heart rate", yAxisLabel: "bpm" },
+  { id: "calories", title: "Calories burn", yAxisLabel: "Calories" },
 ];
 
 const FitnessPage = () => {
@@ -22,7 +21,7 @@ const FitnessPage = () => {
     >
       {data.map((d) => (
         <Grid item xs={12} md={6} key={d.id}>
-          <TimeSeriesPlot title={d.title} yAxisLabel={d.yAxisLabel} />
+          <FitnessPlot data={d} />
         </Grid>
       ))}
     </Grid>

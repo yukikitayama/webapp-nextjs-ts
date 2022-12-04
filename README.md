@@ -32,6 +32,10 @@ The footer contains the icons to social media such as LinkedIn, GitHub, Instagra
 - [A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 - [Flexbox](https://mui.com/system/flexbox/)
 
+## Next.js
+
+- [A 2021 guide about structuring your Next.js project in a flexible and efficient way](https://dev.to/vadorequest/a-2021-guide-about-structuring-your-next-js-project-in-a-flexible-and-efficient-way-472)
+
 ## Components
 
 ### Navigation bar

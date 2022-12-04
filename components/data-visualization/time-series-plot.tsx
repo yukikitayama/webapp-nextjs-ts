@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { blue } from "@mui/material/colors";
 import Grid from "@mui/material/Grid";
 import dayjs, { Dayjs } from "dayjs";
 import Stack from "@mui/material/Stack";
@@ -17,7 +18,13 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const data = [
+import { getDefaultDate } from "../../utils/datetime";
+
+const color = blue[500];
+
+const defaultStart = dayjs(getDefaultDate(-30));
+const defaultEnd = dayjs(getDefaultDate(0));
+const defaultData = [
   { index: "2022-11-23", value: 10 },
   { index: "2022-11-24", value: 12 },
   { index: "2022-11-25", value: 11 },
@@ -28,20 +35,27 @@ const data = [
 interface TimeSeriesPlotProps {
   title?: string;
   yAxisLabel?: string;
+  data?: {
+    index: string;
+    value: number;
+  }[];
+  start?: Date | null;
+  setStart?(newValue: Date | null): void; 
+  end?: Date | null;
+  setEnd?(newValue: Date | null): void;
+  fetchData?: () => void;
 }
 
 const TimeSeriesPlot: React.FC<TimeSeriesPlotProps> = (props) => {
-  const [start, setStart] = useState<Dayjs | null>(
-    dayjs("2022-12-01T00:00:00")
-  );
-  const [end, setEnd] = useState<Dayjs | null>(dayjs("2022-12-02T00:00:00"));
-
+  
   const handleStartChange = (newValue: Dayjs | null) => {
-    setStart(newValue);
+    const nativeDate = newValue!.toDate();
+    props.setStart!(nativeDate);
   };
 
   const handleEndChange = (newValue: Dayjs | null) => {
-    setEnd(newValue);
+    const nativeDate = newValue!.toDate();
+    props.setEnd!(nativeDate);
   };
 
   return (
@@ -60,8 +74,14 @@ const TimeSeriesPlot: React.FC<TimeSeriesPlotProps> = (props) => {
 
       <Grid item xs={12}>
         <ResponsiveContainer width="100%" height={300}>
-          <LineChart data={data}>
-            <Line type="monotone" dataKey="value" stroke="#8884d8" />
+          <LineChart data={props.data ? props.data : defaultData}>
+            <Line
+              type="monotone"
+              dataKey="value"
+              stroke={color}
+              dot={false}
+              strokeWidth={2}
+            />
             <XAxis dataKey="index" />
             <YAxis
               label={{
@@ -86,7 +106,7 @@ const TimeSeriesPlot: React.FC<TimeSeriesPlotProps> = (props) => {
             <MobileDatePicker
               label="Start"
               inputFormat="MM/DD/YYYY"
-              value={start}
+              value={props.start}
               onChange={handleStartChange}
               renderInput={(params) => (
                 <TextField {...params} variant="standard" size="small" />
@@ -95,13 +115,13 @@ const TimeSeriesPlot: React.FC<TimeSeriesPlotProps> = (props) => {
             <MobileDatePicker
               label="End"
               inputFormat="MM/DD/YYYY"
-              value={end}
+              value={props.end}
               onChange={handleEndChange}
               renderInput={(params) => (
                 <TextField {...params} variant="standard" size="small" />
               )}
             />
-            <Button variant="outlined" size="small">
+            <Button variant="outlined" size="small" onClick={props.fetchData}>
               Update
             </Button>
           </Stack>
