@@ -14,7 +14,7 @@ interface FitnessPlotProps {
 const FitnessPlot: React.FC<FitnessPlotProps> = (props) => {
   const { id, title, yAxisLabel } = props.data;
   const [data, setData] = useState();
-  const [start, setStart] = useState<Date | null>(getDefaultDate(-30));
+  const [start, setStart] = useState<Date | null>(getDefaultDate(-30 * 3));
   const [end, setEnd] = useState<Date | null>(getDefaultDate(0));
 
   const fetchData = useCallback(async () => {
