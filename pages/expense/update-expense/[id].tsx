@@ -1,5 +1,9 @@
+import { useRouter } from "next/router";
+
 const UpdateExpensePage = () => {
-  return <div>Update expense</div>;
+  const router = useRouter();
+
+  return <div>ID: {router.query.id}</div>;
 };
 
 export default UpdateExpensePage;

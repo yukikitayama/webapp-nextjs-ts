@@ -28,7 +28,7 @@ const FitnessPlot: React.FC<FitnessPlotProps> = (props) => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  });
 
   return (
     <TimeSeriesPlot
