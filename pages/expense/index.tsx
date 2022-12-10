@@ -48,15 +48,32 @@ const ExpensePage = () => {
         </Grid>
 
         <Grid item xs={12} md={4}>
-          <ExpensePlot title="Daily" aggregation="daily" yAxisLabel="USD" />
+          <ExpensePlot
+            title="Daily"
+            aggregation="daily"
+            yAxisLabel="USD"
+            start={startDaily}
+            end={endDaily}
+          />
         </Grid>
 
         <Grid item xs={12} md={4}>
-          <ExpensePlot title="Monthly" aggregation="monthly" yAxisLabel="USD" />
+          <ExpensePlot
+            title="Monthly"
+            aggregation="monthly"
+            yAxisLabel="USD"
+            start={startMonthly}
+            end={endMonthly}
+          />
         </Grid>
 
         <Grid item xs={12} md={4}>
-          <ExpensePlot title="Category" aggregation="category" />
+          <ExpensePlot
+            title="Category"
+            aggregation="category"
+            start={startCategory}
+            end={endCategory}
+          />
         </Grid>
 
         <Grid item xs={12}>
