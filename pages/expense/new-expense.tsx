@@ -1,5 +1,7 @@
+import ExpenseDetail from "../../components/expense/expense-detail";
+
 const NewExpensePage = () => {
-  return <div>New expense</div>;
+  return <ExpenseDetail />;
 };
 
 export default NewExpensePage;
