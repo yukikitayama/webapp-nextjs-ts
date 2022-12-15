@@ -8,22 +8,34 @@ const articles = [
     id: "1",
     title: "title1",
     date: "2022-11-23",
-    imagePath: "",
+    image: "network.jpg",
     excerpt: "excerpt1",
+    slug: "tmp",
+    category: "category",
+    view: 0,
+    like: 0,
   },
   {
     id: "2",
     title: "title2",
     date: "2022-11-24",
-    imagePath: "",
+    image: "network.jpg",
     excerpt: "excerpt2",
+    slug: "tmp",
+    category: "category",
+    view: 0,
+    like: 0,
   },
   {
     id: "3",
     title: "title3",
     date: "2022-11-25",
-    imagePath: "",
+    image: "network.jpg",
     excerpt: "excerpt3",
+    slug: "tmp",
+    category: "category",
+    view: 0,
+    like: 0,
   },
 ];
 
@@ -38,7 +50,7 @@ const ArticlePage = () => {
         spacing={4}
       >
         {articles.map((article) => (
-          <Grid item xs={12} md={6} key={article.id}>
+          <Grid item xs={12} md={4} key={article.id}>
             <ArticleCard article={article} />
           </Grid>
         ))}
@@ -46,5 +58,10 @@ const ArticlePage = () => {
     </Fragment>
   );
 };
+
+export async function getStaticProps() {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/articles`);
+  const articles = await response.json();
+}
 
 export default ArticlePage;

@@ -36,6 +36,13 @@ The footer contains the icons to social media such as LinkedIn, GitHub, Instagra
 
 - [A 2021 guide about structuring your Next.js project in a flexible and efficient way](https://dev.to/vadorequest/a-2021-guide-about-structuring-your-next-js-project-in-a-flexible-and-efficient-way-472)
 
+### Image
+
+- Fill an image with the aspect ration preserved by using `position`, `fill`, and `object-fit`
+  - [fill](https://nextjs.org/docs/api-reference/next/image#fill)
+  - [object-fit](https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit)
+  - [style](https://reactjs.org/docs/dom-elements.html#style)
+
 ## Components
 
 ### Navigation bar

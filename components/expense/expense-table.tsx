@@ -29,7 +29,7 @@ const ExpenseTable = () => {
     };
 
     fetchData();
-  });
+  }, []);
 
   const handleRowClick: GridEventListener<"rowClick"> = (params) => {
     router.push(`/expense/update-expense/${params.id}`);

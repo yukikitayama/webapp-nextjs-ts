@@ -1,9 +1,11 @@
 import { useRouter } from "next/router";
 
+import ExpenseDetail from "../../../components/expense/expense-detail";
+
 const UpdateExpensePage = () => {
   const router = useRouter();
 
-  return <div>ID: {router.query.id}</div>;
+  return <ExpenseDetail id={router.query.id as string} />;
 };
 
 export default UpdateExpensePage;

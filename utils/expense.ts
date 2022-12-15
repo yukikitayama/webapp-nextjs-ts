@@ -20,6 +20,7 @@ export const expenseCategories = [
   { label: "Homeware", value: "homeware" },
   { label: "Tax", value: "tax" },
   { label: "Motorcycle", value: "motorcycle" },
+  { label: "Gas", value: "gas" }
 ];
 
 export const expenseTypes = [

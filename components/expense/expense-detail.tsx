@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
@@ -14,25 +15,57 @@ import FormControl from "@mui/material/FormControl";
 import FormHelperText from "@mui/material/FormHelperText";
 import Grid from "@mui/material/Grid";
 import LinearProgress from "@mui/material/LinearProgress";
-import AdapterDateFns from "@mui/x-date-pickers/AdapterDateFns";
-import LocalizationProvider from "@mui/x-date-pickers/LocalizationProvider";
-import DesktopDatePicker from "@mui/x-date-pickers/DesktopDatePicker";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 
 import { expenseCategories, expenseTypes } from "../../utils/expense";
+import {
+  getLocalDateFromDatetime,
+  getDatetimeFromLocalDate,
+} from "../../utils/datetime";
 
-const ExpenseDetail = () => {
+interface ExpenseDetailProps {
+  id?: string;
+}
+
+const ExpenseDetail: React.FC<ExpenseDetailProps> = (props) => {
   const [date, setDate] = useState<Date | null>(new Date());
   const [category, setCategory] = useState("grocery");
   const [type, setType] = useState("normal");
-  const [amount, setAmount] = useState<number | null>();
+  const [amount, setAmount] = useState<number | string>("");
   const [place, setPlace] = useState("");
   const [memo, setMemo] = useState("");
   const [documentId, setDocumentId] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [mode, setMode] = useState("add-expense");
   const [isAuth, setIsAuth] = useState(false);
+  const router = useRouter();
 
-  const dateChangeHandler = (newValue: Date) => {
+  useEffect(() => {
+    if (props.id) {
+      const url = `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/expenses?id=${props.id}`;
+      const fetchData = async () => {
+        const response = await fetch(url);
+        const fetchedData = await response.json();
+        const localDate = getDatetimeFromLocalDate(fetchedData.date);
+        setDate(localDate);
+        setCategory(fetchedData.item);
+        setType(fetchedData.type);
+        setAmount(fetchedData.amount);
+        setPlace(fetchedData.place);
+        setMemo(fetchedData.memo);
+        setDocumentId(fetchedData.id);
+        setMode("update-expense");
+      };
+
+      setIsSubmitting(true);
+      fetchData();
+      setIsSubmitting(false);
+    }
+  }, [props.id]);
+
+  const dateChangeHandler = (newValue: Date | null) => {
     setDate(newValue);
   };
   const categoryChangeHandler = (event: SelectChangeEvent) => {
@@ -42,7 +75,7 @@ const ExpenseDetail = () => {
     setType(event.target.value as string);
   };
   const amountChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setAmount(+event.target.value);
+    setAmount(+event!.target.value);
   };
   const placeChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPlace(event.target.value);
@@ -51,13 +84,106 @@ const ExpenseDetail = () => {
     setMemo(event.target.value);
   };
 
-  const addHandler = () => {};
-  const updateHandler = () => {};
-  const deleteHandler = () => {};
+  const addHandler = async () => {
+    setIsSubmitting(true);
+
+    const dateString = getLocalDateFromDatetime(date!);
+    const body = {
+      date: dateString,
+      item: category,
+      type: type,
+      amount: amount,
+      place: place,
+      memo: memo,
+    };
+    const url = `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/expenses`;
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        // Authorization: idToken
+      },
+      body: JSON.stringify(body),
+    });
+
+    response
+      .json()
+      .then((res) => {
+        setIsSubmitting(false);
+        router.push("/expense");
+      })
+      .catch((err) => {
+        setIsSubmitting(false);
+        alert(`Error: ${err}`);
+      });
+  };
+
+  const updateHandler = async () => {
+    setIsSubmitting(true);
+
+    const dateString = getLocalDateFromDatetime(date!);
+    // PUT needs MongoDB document ID to update one
+    const body = {
+      date: dateString,
+      item: category,
+      type: type,
+      amount: amount,
+      place: place,
+      memo: memo,
+      id: documentId,
+    };
+    const url = `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/expenses`;
+    const response = await fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        // Authorization: idToken,
+      },
+      body: JSON.stringify(body),
+    });
+
+    response
+      .json()
+      .then((data) => {
+        setIsSubmitting(false);
+        router.push("/expense");
+      })
+      .catch((error) => {
+        setIsSubmitting(false);
+        alert(`Error: ${error}`);
+      });
+  };
+
+  const deleteHandler = async () => {
+    setIsSubmitting(true);
+
+    const body = { id: documentId };
+    const url = `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/expenses`;
+    const response = await fetch(url, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        // Authorization: idToken,
+      },
+      body: JSON.stringify(body),
+    });
+
+    response
+      .json()
+      .then((data) => {
+        setIsSubmitting(false);
+        router.push("/expense");
+      })
+      .catch((error) => {
+        setIsSubmitting(false);
+        alert(`Error: ${error}`);
+      });
+  };
 
   const addExpenseButtons = (
     <Stack direction="row" spacing={2}>
-      <Button variant="contained" disabled={!isAuth} onClick={addHandler}>
+      {/* <Button variant="contained" disabled={!isAuth} onClick={addHandler}> */}
+      <Button variant="contained" onClick={addHandler}>
         Submit
       </Button>
       <Link href="/expense" passHref>
@@ -70,7 +196,8 @@ const ExpenseDetail = () => {
 
   const updateExpenseButtons = (
     <Stack direction="row" spacing={2}>
-      <Button variant="contained" disabled={!isAuth} onClick={updateHandler}>
+      {/* <Button variant="contained" disabled={!isAuth} onClick={updateHandler}> */}
+      <Button variant="contained" onClick={updateHandler}>
         Update
       </Button>
       <Link href="/expense" passHref>
@@ -81,7 +208,7 @@ const ExpenseDetail = () => {
       <Button
         variant="contained"
         color="error"
-        disabled={!isAuth}
+        // disabled={!isAuth}
         onClick={deleteHandler}
       >
         Delete
@@ -101,15 +228,20 @@ const ExpenseDetail = () => {
           <CardHeader title="Add new expense" />
           <CardContent>
             <Stack spacing={1}>
-              {/* <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DesktopDatePicker
                   label="Date *"
                   inputFormat="MM/dd/yyyy"
                   value={date}
                   onChange={dateChangeHandler}
-                  renderInput={(params: any) => <TextField {...params} />}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      helperText={params?.inputProps?.placeholder}
+                    />
+                  )}
                 />
-              </LocalizationProvider> */}
+              </LocalizationProvider>
               <FormControl fullWidth>
                 <InputLabel id="category-label">Category *</InputLabel>
                 <Select
@@ -174,7 +306,7 @@ const ExpenseDetail = () => {
           <CardActions>
             {mode === "add-expense" ? addExpenseButtons : updateExpenseButtons}
           </CardActions>
-          {isSubmitting && <LinearProgress color="secondary" />}
+          {isSubmitting && <LinearProgress color="primary" />}
         </Card>
       </Grid>
     </Grid>
