@@ -3,43 +3,21 @@ import Grid from "@mui/material/Grid";
 
 import ArticleCard from "../../components/article/article-card";
 
-const articles = [
-  {
-    id: "1",
-    title: "title1",
-    date: "2022-11-23",
-    image: "network.jpg",
-    excerpt: "excerpt1",
-    slug: "tmp",
-    category: "category",
-    view: 0,
-    like: 0,
-  },
-  {
-    id: "2",
-    title: "title2",
-    date: "2022-11-24",
-    image: "network.jpg",
-    excerpt: "excerpt2",
-    slug: "tmp",
-    category: "category",
-    view: 0,
-    like: 0,
-  },
-  {
-    id: "3",
-    title: "title3",
-    date: "2022-11-25",
-    image: "network.jpg",
-    excerpt: "excerpt3",
-    slug: "tmp",
-    category: "category",
-    view: 0,
-    like: 0,
-  },
-];
+interface ArticlePageProps {
+  articles: {
+    id: string;
+    title: string;
+    category: string;
+    date: string;
+    image: string;
+    slug: string;
+    view?: number;
+    like?: number;
+  }[];
+}
 
-const ArticlePage = () => {
+const ArticlePage: React.FC<ArticlePageProps> = (props) => {
+  
   return (
     <Fragment>
       <Grid
@@ -49,8 +27,8 @@ const ArticlePage = () => {
         alignItems="center"
         spacing={4}
       >
-        {articles.map((article) => (
-          <Grid item xs={12} md={4} key={article.id}>
+        {props.articles.map((article) => (
+          <Grid item xs={12} md={4} lg={3} key={article.id}>
             <ArticleCard article={article} />
           </Grid>
         ))}
@@ -60,8 +38,16 @@ const ArticlePage = () => {
 };
 
 export async function getStaticProps() {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/articles`);
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/articles`
+  );
   const articles = await response.json();
+
+  return {
+    props: {
+      articles: articles,
+    },
+  };
 }
 
 export default ArticlePage;

@@ -13,11 +13,11 @@ interface ArticleCardProps {
     title: string;
     date: string;
     image: string;
-    excerpt: string;
     slug: string;
     category: string;
-    view: number;
-    like: number;
+    excerpt?: string;
+    view?: number;
+    like?: number;
   };
 }
 
@@ -38,12 +38,14 @@ const ArticleCard: React.FC<ArticleCardProps> = (props) => {
               src={`/images/article/${slug}/${image}`}
               alt=""
               fill={true}
+              sizes="50vw"
+              // priority={true}
               style={{ objectFit: "cover" }}
             />
           </div>
         </CardMedia>
         <CardContent>
-          <Typography variant="h5" component="div">
+          <Typography variant="h6" component="div">
             {title}
           </Typography>
           {/* <Typography variant="body2" color="text.secondary" noWrap>
