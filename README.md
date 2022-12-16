@@ -43,6 +43,10 @@ The footer contains the icons to social media such as LinkedIn, GitHub, Instagra
   - [object-fit](https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit)
   - [style](https://reactjs.org/docs/dom-elements.html#style)
 
+### getStaticProps
+
+- [How to make Next.js getStaticProps work with typescript](https://stackoverflow.com/questions/65078245/how-to-make-next-js-getstaticprops-work-with-typescript)
+
 ## Components
 
 ### Navigation bar
