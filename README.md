@@ -53,6 +53,11 @@ The footer contains the icons to social media such as LinkedIn, GitHub, Instagra
 
 - [App bar with responsive menu](https://mui.com/material-ui/react-app-bar/#app-bar-with-responsive-menu)
 
+## React Markdown
+
+- [SyntaxError: Unexpected token export when using NextJS](https://github.com/react-syntax-highlighter/react-syntax-highlighter/issues/230)
+  - Use `cjs` instead of `esm`
+
 ## File size
 
 ### Initial state
