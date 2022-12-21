@@ -4,6 +4,7 @@ import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import CircularProgress from "@mui/material/CircularProgress";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
@@ -39,6 +40,7 @@ interface InteractivePieChartProps {
   end?: Date | null;
   setEnd?(newValue: Date | null): void;
   fetchData?: () => void;
+  isLoading?: boolean;
 }
 
 // matplotlib tableau palette
@@ -76,6 +78,12 @@ const InteractivePieChart: React.FC<InteractivePieChartProps> = (props) => {
           {props.title}
         </Typography>
       </Grid>
+
+      {props.isLoading && (
+        <Grid item xs={12} textAlign="center">
+          <CircularProgress />
+        </Grid>
+      )}
 
       <Grid item xs={12}>
         <ResponsiveContainer width="100%" height={300}>

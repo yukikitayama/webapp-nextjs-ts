@@ -12,8 +12,8 @@ import classes from "./article-content.module.css";
 const ArticleContent: React.FC<ArticleProps> = (props) => {
   const { article } = props;
 
-  const components = {
-    p(paragraph) {
+  const components: any = {
+    p(paragraph: any) {
       const { node } = paragraph;
 
       if (node.children[0].tagName === "img") {
@@ -52,7 +52,7 @@ const ArticleContent: React.FC<ArticleProps> = (props) => {
       return <p>{paragraph.children}</p>;
     },
 
-    code(code) {
+    code(code: any) {
       // Need to see the actual objects because code block received different objects depending on types
       // console.log("code");
       // console.log(code);

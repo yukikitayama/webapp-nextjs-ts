@@ -4,6 +4,7 @@ import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import InstagramIcon from "@mui/icons-material/Instagram";
+import Link from "@mui/material/Link";
 
 const Footer = () => {
   return (
@@ -11,10 +12,28 @@ const Footer = () => {
       sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
       elevation={3}
     >
-      <BottomNavigation showLabels>
-        <BottomNavigationAction icon={<LinkedInIcon color="primary" />} />
-        <BottomNavigationAction icon={<GitHubIcon color="primary" />} />
-        <BottomNavigationAction icon={<InstagramIcon color="primary" />} />
+      <BottomNavigation>
+        <BottomNavigationAction
+          icon={<LinkedInIcon color="primary" />}
+          component={Link}
+          href="https://www.linkedin.com/in/yukikitayama/"
+          target="_blank"
+          rel="noopener"
+        />
+        <BottomNavigationAction
+          icon={<GitHubIcon color="primary" />}
+          component={Link}
+          href="https://github.com/yukikitayama"
+          target="_blank"
+          rel="noopener"
+        />
+        <BottomNavigationAction
+          icon={<InstagramIcon color="primary" />}
+          component={Link}
+          href="https://www.instagram.com/mystyle_kitayama/"
+          target="_blank"
+          rel="noopener"
+        />
       </BottomNavigation>
     </Paper>
   );

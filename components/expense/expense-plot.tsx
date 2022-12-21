@@ -14,8 +14,11 @@ interface ExpensePlotProps {
 
 const ExpensePlot: React.FC<ExpensePlotProps> = (props) => {
   const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchData = async () => {
+    setIsLoading(true);
+
     const startDate = getLocalDateFromDatetime(props.start);
     const endDate = getLocalDateFromDatetime(props.end);
     const url = `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/expenses?aggregation=${props.aggregation}&start=${startDate}&end=${endDate}`;
@@ -23,6 +26,7 @@ const ExpensePlot: React.FC<ExpensePlotProps> = (props) => {
     const fetchedData = await response.json();
 
     setData(fetchedData);
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -36,6 +40,7 @@ const ExpensePlot: React.FC<ExpensePlotProps> = (props) => {
         data={data}
         start={props.start}
         end={props.end}
+        isLoading={isLoading}
       />
     ) : (
       <TimeSeriesPlot
@@ -44,6 +49,7 @@ const ExpensePlot: React.FC<ExpensePlotProps> = (props) => {
         data={data}
         start={props.start}
         end={props.end}
+        isLoading={isLoading}
       />
     );
 

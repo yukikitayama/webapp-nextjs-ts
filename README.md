@@ -58,6 +58,10 @@ The footer contains the icons to social media such as LinkedIn, GitHub, Instagra
 - [SyntaxError: Unexpected token export when using NextJS](https://github.com/react-syntax-highlighter/react-syntax-highlighter/issues/230)
   - Use `cjs` instead of `esm`
 
+## MUI
+
+- [Component prop](https://mui.com/material-ui/guides/composition/#component-prop)
+
 ## File size
 
 ### Initial state

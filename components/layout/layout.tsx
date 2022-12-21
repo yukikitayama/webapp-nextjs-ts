@@ -13,6 +13,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = (props) => {
         direction="row"
         justifyContent="center"
         alignItems="center"
+        mb={10}  // Bottom margin to avoid the overlapping content and bottom navigation
       >
         <Grid item xs={12} md={8} p={2}>
           <main>{props.children}</main>

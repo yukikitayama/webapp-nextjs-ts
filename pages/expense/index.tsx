@@ -34,7 +34,6 @@ const ExpensePage = () => {
         justifyContent="center"
         alignItems="center"
         spacing={4}
-        pb={10}
       >
         <Grid item xs={12} sx={{ textAlign: "center" }}>
           <Link href="/expense/new-expense" passHref>

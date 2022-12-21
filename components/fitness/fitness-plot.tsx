@@ -16,19 +16,24 @@ const FitnessPlot: React.FC<FitnessPlotProps> = (props) => {
   const [data, setData] = useState();
   const [start, setStart] = useState<Date | null>(getDefaultDate(-30 * 3));
   const [end, setEnd] = useState<Date | null>(getDefaultDate(0));
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchData = useCallback(async () => {
+    setIsLoading(true);
+
     const startDate = getLocalDateFromDatetime(start!);
     const endDate = getLocalDateFromDatetime(end!);
     const url = `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/fitness?data=${id}&start=${startDate}&end=${endDate}`;
     const response = await fetch(url);
     const fetchedData = await response.json();
+
     setData(fetchedData);
+    setIsLoading(false);
   }, [id, start, end]);
 
   useEffect(() => {
     fetchData();
-  });
+  }, []);
 
   return (
     <TimeSeriesPlot
@@ -40,6 +45,7 @@ const FitnessPlot: React.FC<FitnessPlotProps> = (props) => {
       end={end}
       setEnd={setEnd}
       fetchData={fetchData}
+      isLoading={isLoading}
     />
   );
 };
