@@ -19,19 +19,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-import { getDefaultDate } from "../../utils/datetime";
-
 const color = blue[500];
-
-const defaultStart = dayjs(getDefaultDate(-30));
-const defaultEnd = dayjs(getDefaultDate(0));
-const defaultData = [
-  { index: "2022-11-23", value: 10 },
-  { index: "2022-11-24", value: 12 },
-  { index: "2022-11-25", value: 11 },
-  { index: "2022-11-26", value: 13 },
-  { index: "2022-11-27", value: 14 },
-];
 
 interface TimeSeriesPlotProps {
   title?: string;
@@ -81,7 +69,7 @@ const TimeSeriesPlot: React.FC<TimeSeriesPlotProps> = (props) => {
 
       <Grid item xs={12}>
         <ResponsiveContainer width="100%" height={300}>
-          <LineChart data={props.data ? props.data : defaultData}>
+          <LineChart data={props.data}>
             <Line
               type="monotone"
               dataKey="value"

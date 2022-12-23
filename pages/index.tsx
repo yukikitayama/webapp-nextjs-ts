@@ -1,7 +1,30 @@
-import Head from 'next/head'
+import Head from "next/head";
+import Grid from "@mui/material/Grid";
 
+import ExpensePlot from "../components/expense/expense-plot";
+import { getDefaultDate } from "../utils/datetime";
+import ArticleCard from "../components/article/article-card";
+import FitnessPlot from "../components/fitness/fitness-plot";
 
-export default function Home() {
+// 2021-10-01
+const startMonthly = new Date(2021, 9, 1);
+// Current day
+const endMonthly = getDefaultDate(0);
+
+interface ArticleProps {
+  article: {
+    id: string;
+    title: string;
+    category: string;
+    date: string;
+    image: string;
+    slug: string;
+    view?: number;
+    like?: number;
+  };
+}
+
+const Home: React.FC<ArticleProps> = (props) => {
   return (
     <div>
       <Head>
@@ -10,8 +33,42 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      Home page
+      <Grid container spacing={5} justifyContent="center" alignItems="center">
+        <Grid item xs={12} sm={6} lg={4}>
+          <ExpensePlot
+            title="Monthly expense"
+            aggregation="monthly"
+            yAxisLabel="USD"
+            start={startMonthly}
+            end={endMonthly}
+          />
+        </Grid>
 
+        <Grid item xs={12} sm={6} lg={4}>
+          <ArticleCard article={props.article} />
+        </Grid>
+
+        <Grid item xs={12} sm={6} lg={4}>
+          <FitnessPlot
+            data={{ id: "sleep", title: "Sleep", yAxisLabel: "Minutes" }}
+          />
+        </Grid>
+      </Grid>
     </div>
-  )
+  );
+};
+
+export async function getStaticProps() {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/articles?id=639ab1522ec4249ad4cecab7`
+  );
+  const article = await response.json();
+
+  return {
+    props: {
+      article: article,
+    },
+  };
 }
+
+export default Home;

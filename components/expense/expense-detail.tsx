@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardContent from "@mui/material/CardContent";
@@ -24,6 +25,7 @@ import {
   getLocalDateFromDatetime,
   getDatetimeFromLocalDate,
 } from "../../utils/datetime";
+import type { RootState } from "../../store/index";
 
 interface ExpenseDetailProps {
   id?: string;
@@ -39,8 +41,9 @@ const ExpenseDetail: React.FC<ExpenseDetailProps> = (props) => {
   const [documentId, setDocumentId] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [mode, setMode] = useState("add-expense");
-  const [isAuth, setIsAuth] = useState(false);
   const router = useRouter();
+  const isAuth = useSelector((state: RootState) => state.auth.isAuthenticated);
+  const idToken = useSelector((state: RootState) => state.auth.token);
 
   useEffect(() => {
     if (props.id) {
@@ -101,7 +104,8 @@ const ExpenseDetail: React.FC<ExpenseDetailProps> = (props) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        // Authorization: idToken
+        // This authorization is configured by Amazon Cognito and Amazon API Gateway
+        Authorization: idToken!,
       },
       body: JSON.stringify(body),
     });
@@ -137,7 +141,8 @@ const ExpenseDetail: React.FC<ExpenseDetailProps> = (props) => {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        // Authorization: idToken,
+        // This authorization is configured by Amazon Cognito and Amazon API Gateway
+        Authorization: idToken!,
       },
       body: JSON.stringify(body),
     });
@@ -163,7 +168,8 @@ const ExpenseDetail: React.FC<ExpenseDetailProps> = (props) => {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        // Authorization: idToken,
+        // This authorization is configured by Amazon Cognito and Amazon API Gateway
+        Authorization: idToken!,
       },
       body: JSON.stringify(body),
     });
@@ -182,8 +188,7 @@ const ExpenseDetail: React.FC<ExpenseDetailProps> = (props) => {
 
   const addExpenseButtons = (
     <Stack direction="row" spacing={2}>
-      {/* <Button variant="contained" disabled={!isAuth} onClick={addHandler}> */}
-      <Button variant="contained" onClick={addHandler}>
+      <Button variant="contained" disabled={!isAuth} onClick={addHandler}>
         Submit
       </Button>
       <Link href="/expense" passHref>
@@ -196,8 +201,7 @@ const ExpenseDetail: React.FC<ExpenseDetailProps> = (props) => {
 
   const updateExpenseButtons = (
     <Stack direction="row" spacing={2}>
-      {/* <Button variant="contained" disabled={!isAuth} onClick={updateHandler}> */}
-      <Button variant="contained" onClick={updateHandler}>
+      <Button variant="contained" disabled={!isAuth} onClick={updateHandler}>
         Update
       </Button>
       <Link href="/expense" passHref>
@@ -208,7 +212,7 @@ const ExpenseDetail: React.FC<ExpenseDetailProps> = (props) => {
       <Button
         variant="contained"
         color="error"
-        // disabled={!isAuth}
+        disabled={!isAuth}
         onClick={deleteHandler}
       >
         Delete
