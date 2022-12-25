@@ -45,7 +45,9 @@ const Navigation = () => {
 
   // Function to programmatically navigate a user to a page
   // when an item in drawer side menu is clicked
-  const drawerNavigateToPageHandler = (event: React.KeyboardEvent | React.MouseEvent) => {
+  const drawerNavigateToPageHandler = (
+    event: React.KeyboardEvent | React.MouseEvent
+  ) => {
     const page = (event.target as HTMLElement).textContent;
     if (page === "Home") {
       router.push("/");
@@ -65,7 +67,9 @@ const Navigation = () => {
       <List>
         {drawerItems.map((item) => (
           <ListItem disablePadding key={item}>
-            <ListItemButton onClick={(event) => drawerNavigateToPageHandler(event)}>
+            <ListItemButton
+              onClick={(event) => drawerNavigateToPageHandler(event)}
+            >
               <ListItemText primary={item} />
             </ListItemButton>
           </ListItem>
@@ -87,7 +91,12 @@ const Navigation = () => {
             {/* Avatar for desktop */}
             <Avatar
               src="/images/github_profile_photo_yuki_kitayama.jpg"
-              sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+              sx={{
+                display: { xs: "none", md: "flex" },
+                mr: 1,
+                width: 48,
+                height: 48,
+              }}
             />
 
             {/* Title for desktop */}
@@ -112,20 +121,33 @@ const Navigation = () => {
 
             {/* Menu icon for mobile */}
             <Box sx={{ flexGrow: 0.5, display: { xs: "flex", md: "none" } }}>
-              <IconButton size="large" color="inherit" onClick={toggleDrawer(true)}>
+              <IconButton
+                size="large"
+                color="inherit"
+                onClick={toggleDrawer(true)}
+              >
                 <MenuIcon />
               </IconButton>
             </Box>
 
             {/* Drawer side menu for mobile */}
-            <Drawer anchor="left" open={isDrawerOpen} onClose={toggleDrawer(false)}>
+            <Drawer
+              anchor="left"
+              open={isDrawerOpen}
+              onClose={toggleDrawer(false)}
+            >
               {drawerList}
             </Drawer>
 
             {/* Avatar for mobile */}
             <Avatar
               src="/images/github_profile_photo_yuki_kitayama.jpg"
-              sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
+              sx={{
+                display: { xs: "flex", md: "none" },
+                mr: 1,
+                width: 45,
+                height: 45,
+              }}
             />
 
             {/* Title for mobile */}
@@ -166,7 +188,6 @@ const Navigation = () => {
                 </Link>
               ))}
             </Box>
-
           </Toolbar>
         </Grid>
       </Grid>
