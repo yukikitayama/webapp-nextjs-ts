@@ -11,7 +11,8 @@ import { Provider } from "react-redux";
 
 import Layout from "../components/layout/layout";
 import { store } from "../store/index";
-import awsconfig from "../aws-exports";
+// import awsconfig from "../aws-exports";
+import awsconfig from "../src/aws-exports";
 
 Amplify.configure(awsconfig);
 
