@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { blue } from "@mui/material/colors";
+import { tiffanyBlue } from "../../utils/style";
 import Grid from "@mui/material/Grid";
 import dayjs, { Dayjs } from "dayjs";
 import Stack from "@mui/material/Stack";
@@ -19,7 +20,8 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const color = blue[500];
+// const color = blue[500];
+const color = tiffanyBlue;
 
 interface TimeSeriesPlotProps {
   title?: string;

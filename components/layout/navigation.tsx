@@ -111,7 +111,8 @@ const Navigation = () => {
                   fontFamily: "monospace",
                   fontWeight: 700,
                   letterSpacing: ".3rem",
-                  color: "inherit",
+                  // color: "inherit",
+                  color: "white",
                   textDecoration: "none",
                 }}
               >
@@ -123,7 +124,8 @@ const Navigation = () => {
             <Box sx={{ flexGrow: 0.5, display: { xs: "flex", md: "none" } }}>
               <IconButton
                 size="large"
-                color="inherit"
+                // color="inherit"
+                sx={{ color: "white" }}
                 onClick={toggleDrawer(true)}
               >
                 <MenuIcon />
@@ -163,7 +165,8 @@ const Navigation = () => {
                   fontFamily: "monospace",
                   fontWeight: 700,
                   letterSpacing: ".3rem",
-                  color: "inherit",
+                  // color: "inherit",
+                  color: "white",
                   textDecoration: "none",
                 }}
               >
@@ -180,6 +183,7 @@ const Navigation = () => {
                   passHref
                 >
                   <Button
+                    // sx={{ my: 2, color: "inherit", display: "block" }}
                     sx={{ my: 2, color: "white", display: "block" }}
                     disabled={page.disabled}
                   >

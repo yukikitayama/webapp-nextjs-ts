@@ -5,6 +5,7 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
+import { teal } from "@mui/material/colors";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
@@ -26,6 +27,7 @@ import {
   tabPurple,
   tabBrown,
   tabPink,
+  tiffanyBlue,
 } from "../../utils/style";
 
 interface InteractivePieChartProps {
@@ -44,14 +46,23 @@ interface InteractivePieChartProps {
 }
 
 // matplotlib tableau palette
+// const colors = [
+//   tabBlue,
+//   tabOrange,
+//   tabGreen,
+//   tabRed,
+//   tabPurple,
+//   tabBrown,
+//   tabPink
+// ];
 const colors = [
-  tabBlue,
-  tabOrange,
-  tabGreen,
-  tabRed,
-  tabPurple,
-  tabBrown,
-  tabPink
+  tiffanyBlue,
+  teal[500],
+  teal[400],
+  teal[300],
+  teal[200],
+  teal[100],
+  teal[50],
 ];
 
 const InteractivePieChart: React.FC<InteractivePieChartProps> = (props) => {
