@@ -3,8 +3,7 @@ import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { a11yDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import remarkMath from "remark-math";
-import rehypeKatex from "rehype-katex";
-import "katex/dist/katex.min.css";
+import rehypeMathjax from "rehype-mathjax";
 
 import { ArticleProps } from "../../utils/article";
 import classes from "./article-content.module.css";
@@ -89,7 +88,8 @@ const ArticleContent: React.FC<ArticleProps> = (props) => {
       <ReactMarkdown
         components={components}
         remarkPlugins={[remarkMath]}
-        rehypePlugins={[rehypeKatex]}
+        // rehypePlugins={[rehypeKatex]}
+        rehypePlugins={[rehypeMathjax]}
       >
         {article.content}
       </ReactMarkdown>
