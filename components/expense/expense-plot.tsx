@@ -13,7 +13,7 @@ interface ExpensePlotProps {
 }
 
 const ExpensePlot: React.FC<ExpensePlotProps> = (props) => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<{ index: string; value: number }[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const fetchData = async () => {
@@ -25,7 +25,24 @@ const ExpensePlot: React.FC<ExpensePlotProps> = (props) => {
     const response = await fetch(url);
     const fetchedData = await response.json();
 
-    setData(fetchedData);
+    // When aggregation is daily, compute cumulative sum of daily expense
+    if (props.aggregation === "daily") {
+      let cumsum = 0;
+      const transformedData: { index: string; value: number }[] = [];
+      fetchedData.forEach((element: { index: string; value: number }) => {
+        cumsum += element.value;
+        transformedData.push({
+          index: element.index,
+          // use toFixed(2) to make 2 decimal places because
+          // somehow without it make many zeros
+          value: +cumsum.toFixed(2),
+        });
+      });
+      setData(transformedData);
+    } else {
+      setData(fetchedData);
+    }
+
     setIsLoading(false);
   };
 
@@ -40,6 +57,7 @@ const ExpensePlot: React.FC<ExpensePlotProps> = (props) => {
         data={data}
         start={props.start}
         end={props.end}
+        fetchData={fetchData}
         isLoading={isLoading}
       />
     ) : (
@@ -49,6 +67,7 @@ const ExpensePlot: React.FC<ExpensePlotProps> = (props) => {
         data={data}
         start={props.start}
         end={props.end}
+        fetchData={fetchData}
         isLoading={isLoading}
       />
     );
