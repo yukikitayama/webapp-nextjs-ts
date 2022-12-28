@@ -1,10 +1,14 @@
 import Head from "next/head";
 import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import { teal } from "@mui/material/colors";
 
 import ExpensePlot from "../components/expense/expense-plot";
 import { getDefaultDate } from "../utils/datetime";
 import ArticleCard from "../components/article/article-card";
 import FitnessPlot from "../components/fitness/fitness-plot";
+import Explanation from "../components/home/explanation";
+import Architecture from "../components/home/architecture";
 
 // 2021-10-01
 const startMonthly = new Date(2021, 9, 1);
@@ -34,6 +38,49 @@ const Home: React.FC<ArticleProps> = (props) => {
       </Head>
 
       <Grid container spacing={5} justifyContent="center" alignItems="center">
+        <Grid item xs={12} mt={10} mx={{ xs: 5, lg: 20 }}>
+          <Explanation />
+        </Grid>
+
+        <Grid item xs={12}>
+          <Architecture />
+        </Grid>
+
+        <Grid item xs={12} mx={{ xs: 5, lg: 20 }}>
+          <Typography variant="body1" gutterBottom>
+            Next.js and API code are in GitHub.
+          </Typography>
+          <Typography
+            variant="body1"
+            gutterBottom
+            sx={{ color: teal[200], textDecoration: "underline" }}
+          >
+            <a
+              href="https://github.com/yukikitayama/webapp-nextjs-ts"
+              target="_blank"
+              rel="noreferrer"
+            >
+              https://github.com/yukikitayama/webapp-nextjs-ts
+            </a>
+          </Typography>
+          <Typography
+            variant="body1"
+            gutterBottom
+            sx={{ color: teal[200], textDecoration: "underline" }}
+          >
+            <a
+              href="https://github.com/yukikitayama/api"
+              target="_blank"
+              rel="noreferrer"
+            >
+              https://github.com/yukikitayama/api
+            </a>
+          </Typography>
+          <Typography variant="body1" gutterBottom>
+            The example applications are the following. Find more from the menu.
+          </Typography>
+        </Grid>
+
         <Grid item xs={12} sm={6} lg={4}>
           <ExpensePlot
             title="Monthly expense"
