@@ -1,14 +1,18 @@
 import Head from "next/head";
+import { useCallback } from "react";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { teal } from "@mui/material/colors";
+import Particles from "react-particles";
+import type { Container, Engine } from "tsparticles-engine";
+import { loadFull } from "tsparticles";
 
 import ExpensePlot from "../components/expense/expense-plot";
 import { getDefaultDate } from "../utils/datetime";
 import ArticleCard from "../components/article/article-card";
 import FitnessPlot from "../components/fitness/fitness-plot";
-import Explanation from "../components/home/explanation";
 import Architecture from "../components/home/architecture";
+import { tsParticlesOptions } from "../utils/style";
 
 // 2021-10-01
 const startMonthly = new Date(2021, 9, 1);
@@ -29,6 +33,19 @@ interface ArticleProps {
 }
 
 const Home: React.FC<ArticleProps> = (props) => {
+  const particlesInit = useCallback(async (engine: Engine) => {
+    // console.log(engine);
+    await loadFull(engine);
+    // await loadBubblesPreset(engine);
+  }, []);
+
+  const particlesLoaded = useCallback(
+    async (container: Container | undefined) => {
+      // await console.log(container);
+    },
+    []
+  );
+
   return (
     <div>
       <Head>
@@ -37,9 +54,49 @@ const Home: React.FC<ArticleProps> = (props) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <Particles
+        id="tsparticles"
+        init={particlesInit}
+        loaded={particlesLoaded}
+        options={tsParticlesOptions}
+      />
+
       <Grid container spacing={5} justifyContent="center" alignItems="center">
         <Grid item xs={12} mt={10} mx={{ xs: 5, lg: 20 }}>
-          <Explanation />
+          <Typography variant="body1" gutterBottom>
+            Hi, I&apos;m Yuki. Welcome to my webapp! I&apos;m using this to
+            manage expense, make articles, and check fitness. You might find
+            something useful in articles. The example applications are the
+            following. Find more from menu.
+          </Typography>
+        </Grid>
+
+        <Grid item xs={12} sm={6} lg={4}>
+          <ExpensePlot
+            title="Monthly expense"
+            aggregation="monthly"
+            yAxisLabel="USD"
+            start={startMonthly}
+            end={endMonthly}
+          />
+        </Grid>
+
+        <Grid item xs={12} sm={6} lg={4}>
+          <ArticleCard article={props.article} />
+        </Grid>
+
+        <Grid item xs={12} sm={6} lg={4}>
+          <FitnessPlot
+            data={{ id: "sleep", title: "Sleep", yAxisLabel: "Minutes" }}
+          />
+        </Grid>
+
+        <Grid item xs={12} mt={10} mx={{ xs: 5, lg: 20 }}>
+          <Typography variant="body1" gutterBottom>
+            The frontend is made by Next.js in TypeScript, and the backend is
+            AWS services with Python, running in a serverless microservices manner
+            like below.
+          </Typography>
         </Grid>
 
         <Grid item xs={12}>
@@ -48,7 +105,7 @@ const Home: React.FC<ArticleProps> = (props) => {
 
         <Grid item xs={12} mx={{ xs: 5, lg: 20 }}>
           <Typography variant="body1" gutterBottom>
-            Next.js and API code are in GitHub.
+            The application code is in the following GitHub. I hope you enjoy this app!
           </Typography>
           <Typography
             variant="body1"
@@ -76,29 +133,6 @@ const Home: React.FC<ArticleProps> = (props) => {
               https://github.com/yukikitayama/api
             </a>
           </Typography>
-          <Typography variant="body1" gutterBottom>
-            The example applications are the following. Find more from the menu.
-          </Typography>
-        </Grid>
-
-        <Grid item xs={12} sm={6} lg={4}>
-          <ExpensePlot
-            title="Monthly expense"
-            aggregation="monthly"
-            yAxisLabel="USD"
-            start={startMonthly}
-            end={endMonthly}
-          />
-        </Grid>
-
-        <Grid item xs={12} sm={6} lg={4}>
-          <ArticleCard article={props.article} />
-        </Grid>
-
-        <Grid item xs={12} sm={6} lg={4}>
-          <FitnessPlot
-            data={{ id: "sleep", title: "Sleep", yAxisLabel: "Minutes" }}
-          />
         </Grid>
       </Grid>
     </div>
