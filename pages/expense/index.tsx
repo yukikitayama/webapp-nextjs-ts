@@ -4,26 +4,9 @@ import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 
 import ExpenseTable from "../../components/expense/expense-table";
-import ExpensePlot from "../../components/expense/expense-plot";
-import { getDefaultDate } from "../../utils/datetime";
-
-const now = new Date();
-// First day of the current month
-const startDaily = new Date(now.getFullYear(), now.getMonth(), 1);
-// Last day of the current month
-// const endDaily = new Date(now.getFullYear(), now.getMonth() + 1, 0);
-// Current day
-const endDaily = getDefaultDate(0);
-// 2021-10-01
-const startMonthly = new Date(2021, 9, 1);
-// Current day
-const endMonthly = getDefaultDate(0);
-// First day of a month 6 months ago
-const startCategory = new Date();
-startCategory.setMonth(startCategory.getMonth() - 6);
-startCategory.setHours(0, 0, 0, 0);
-// Current day
-const endCategory = getDefaultDate(0);
+import DailyPlot from "../../components/expense/daily-plot";
+import MonthlyPlot from "../../components/expense/monthly-plot";
+import CategoryPlot from "../../components/expense/category-plot";
 
 const ExpensePage = () => {
   return (
@@ -47,32 +30,15 @@ const ExpensePage = () => {
         </Grid>
 
         <Grid item xs={12} md={4}>
-          <ExpensePlot
-            title="Daily"
-            aggregation="daily"
-            yAxisLabel="USD"
-            start={startDaily}
-            end={endDaily}
-          />
+          <DailyPlot />
         </Grid>
 
         <Grid item xs={12} md={4}>
-          <ExpensePlot
-            title="Monthly"
-            aggregation="monthly"
-            yAxisLabel="USD"
-            start={startMonthly}
-            end={endMonthly}
-          />
+          <MonthlyPlot />
         </Grid>
 
         <Grid item xs={12} md={4}>
-          <ExpensePlot
-            title="Category"
-            aggregation="category"
-            start={startCategory}
-            end={endCategory}
-          />
+          <CategoryPlot />
         </Grid>
 
         <Grid item xs={12}>

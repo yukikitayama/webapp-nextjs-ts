@@ -7,17 +7,11 @@ import Particles from "react-particles";
 import type { Container, Engine } from "tsparticles-engine";
 import { loadFull } from "tsparticles";
 
-import ExpensePlot from "../components/expense/expense-plot";
-import { getDefaultDate } from "../utils/datetime";
+import CategoryPlot from "../components/expense/category-plot";
 import ArticleCard from "../components/article/article-card";
 import FitnessPlot from "../components/fitness/fitness-plot";
 import Architecture from "../components/home/architecture";
 import { tsParticlesOptions } from "../utils/style";
-
-// 2021-10-01
-const startMonthly = new Date(2021, 9, 1);
-// Current day
-const endMonthly = getDefaultDate(0);
 
 interface ArticleProps {
   article: {
@@ -72,13 +66,7 @@ const Home: React.FC<ArticleProps> = (props) => {
         </Grid>
 
         <Grid item xs={12} sm={6} lg={4}>
-          <ExpensePlot
-            title="Monthly expense"
-            aggregation="monthly"
-            yAxisLabel="USD"
-            start={startMonthly}
-            end={endMonthly}
-          />
+          <CategoryPlot />
         </Grid>
 
         <Grid item xs={12} sm={6} lg={4}>
