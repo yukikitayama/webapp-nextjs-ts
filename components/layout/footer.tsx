@@ -10,6 +10,8 @@ import SportsTennisIcon from "@mui/icons-material/SportsTennis";
 // import MusicNoteIcon from "@mui/icons-material/MusicNote";
 import Link from "@mui/material/Link";
 
+import { lightPink, tiffanyBlue } from "../../utils/style";
+
 const Footer = () => {
   return (
     <Paper
@@ -18,21 +20,21 @@ const Footer = () => {
     >
       <BottomNavigation>
         <BottomNavigationAction
-          icon={<LinkedInIcon color="primary" />}
+          icon={<LinkedInIcon sx={{ color: lightPink }} />}
           component={Link}
           href="https://www.linkedin.com/in/yukikitayama/"
           target="_blank"
           rel="noopener"
         />
         <BottomNavigationAction
-          icon={<GitHubIcon color="primary" />}
+          icon={<GitHubIcon sx={{ color: tiffanyBlue }} />}
           component={Link}
           href="https://github.com/yukikitayama"
           target="_blank"
           rel="noopener"
         />
         <BottomNavigationAction
-          icon={<InstagramIcon color="primary" />}
+          icon={<InstagramIcon sx={{ color: tiffanyBlue }} />}
           component={Link}
           href="https://www.instagram.com/mystyle_kitayama/"
           target="_blank"
@@ -46,7 +48,14 @@ const Footer = () => {
           rel="noopener"
         /> */}
         <BottomNavigationAction
-          icon={<YouTubeIcon color="primary" />}
+          icon={<SportsTennisIcon sx={{ color: lightPink }} />}
+          component={Link}
+          href="https://www.usta.com/en/home/play/player-search/profile.html#?uaid=2018939333&results-eventType=ALL&results-year=all#tab=rankings"
+          target="_blank"
+          rel="noopener"
+        />
+        <BottomNavigationAction
+          icon={<YouTubeIcon sx={{ color: tiffanyBlue }} />}
           component={Link}
           href="https://www.youtube.com/channel/UCF5zMl6jTJaHpyxLj66FAXw"
           target="_blank"
@@ -59,13 +68,6 @@ const Footer = () => {
           target="_blank"
           rel="noopener"
         /> */}
-        <BottomNavigationAction
-          icon={<SportsTennisIcon color="primary" />}
-          component={Link}
-          href="https://www.usta.com/en/home/play/player-search/profile.html#?uaid=2018939333&results-eventType=ALL&results-year=all#tab=rankings"
-          target="_blank"
-          rel="noopener"
-        />
       </BottomNavigation>
     </Paper>
   );

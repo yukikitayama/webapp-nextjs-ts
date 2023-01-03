@@ -1,15 +1,21 @@
 import { createTheme } from "@mui/material/styles";
-import { teal } from "@mui/material/colors";
 
 import type { ISourceOptions } from "tsparticles-engine";
 
+// color.adobe.com, split complementary
 export const tiffanyBlue = "#81D8D0";
+export const darkPink = "#8C6362";
+export const lightPink = "#D98F8D";
+export const darkBrown = "#8C7046";
+export const lightBrown = "#D9B277";
 
 export const theme = createTheme({
   palette: {
     primary: {
-      // main: teal[200],
       main: tiffanyBlue,
+    },
+    secondary: {
+      main: lightPink,
     },
   },
 });
@@ -29,7 +35,7 @@ export const tsParticlesOptions: ISourceOptions = {
   fpsLimit: 120,
   particles: {
     color: {
-      value: tiffanyBlue,
+      value: [tiffanyBlue, lightPink, lightBrown, darkPink, darkBrown],
     },
     move: {
       direction: "bottom",
@@ -49,7 +55,7 @@ export const tsParticlesOptions: ISourceOptions = {
       value: 5,
     },
     opacity: {
-      value: 0.2,
+      value: 0.1,
     },
     shape: {
       type: "circle",

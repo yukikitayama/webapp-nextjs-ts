@@ -12,6 +12,7 @@ import ArticleCard from "../components/article/article-card";
 import FitnessPlot from "../components/fitness/fitness-plot";
 import Architecture from "../components/home/architecture";
 import { tsParticlesOptions } from "../utils/style";
+import Greeting from "../components/home/greeting";
 
 interface ArticleProps {
   article: {
@@ -56,9 +57,13 @@ const Home: React.FC<ArticleProps> = (props) => {
       />
 
       <Grid container spacing={5} justifyContent="center" alignItems="center">
-        <Grid item xs={12} mt={10} mx={{ xs: 5, lg: 20 }}>
+        <Grid item>
+          <Greeting />
+        </Grid>
+
+        <Grid item xs={12} mx={{ xs: 5, lg: 20 }}>
           <Typography variant="body1" gutterBottom>
-            Hi, I&apos;m Yuki. Welcome to my webapp! I&apos;m using this to
+            Hi, I&apos;m Yuki. I&apos;m using this to
             manage expense, make articles, and check fitness. You might find
             something useful in articles. The example applications are the
             following. Find more from menu.
