@@ -20,7 +20,7 @@ const Footer = () => {
     >
       <BottomNavigation>
         <BottomNavigationAction
-          icon={<LinkedInIcon sx={{ color: lightPink }} />}
+          icon={<LinkedInIcon sx={{ color: tiffanyBlue }} />}
           component={Link}
           href="https://www.linkedin.com/in/yukikitayama/"
           target="_blank"
@@ -48,7 +48,7 @@ const Footer = () => {
           rel="noopener"
         /> */}
         <BottomNavigationAction
-          icon={<SportsTennisIcon sx={{ color: lightPink }} />}
+          icon={<SportsTennisIcon sx={{ color: tiffanyBlue }} />}
           component={Link}
           href="https://www.usta.com/en/home/play/player-search/profile.html#?uaid=2018939333&results-eventType=ALL&results-year=all#tab=rankings"
           target="_blank"
