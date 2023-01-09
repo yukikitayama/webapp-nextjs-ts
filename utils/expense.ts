@@ -2,6 +2,7 @@ export const expenseCategories = [
   { label: "Grocery", value: "grocery" },
   { label: "Lunch", value: "lunch" },
   { label: "Dinner", value: "dinner" },
+  { label: "Cafe", value: "cafe" },
   { label: "Laundry", value: "laundry" },
   { label: "Rent", value: "rent" },
   { label: "Google Fi", value: "google fi" },
