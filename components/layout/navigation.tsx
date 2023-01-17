@@ -19,12 +19,13 @@ import Drawer from "@mui/material/Drawer";
 const pages = [
   { id: "expense", disabled: false },
   { id: "article", disabled: false },
+  { id: "analytics", disabled: false },
   { id: "fitness", disabled: false },
   // { id: "project", disabled: true },
   { id: "login", disabled: false },
 ];
 // const drawerItems = ["Home", "Expense", "Article", "Fitness", "Project", "Login"];
-const drawerItems = ["Home", "Expense", "Article", "Fitness", "Login"];
+const drawerItems = ["Home", "Expense", "Article", "Analytics", "Fitness", "Login"];
 
 const Navigation = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
