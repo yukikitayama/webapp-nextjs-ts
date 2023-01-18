@@ -8,6 +8,8 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+import { tiffanyBlue } from "../../utils/style";
+
 interface Props {
   data: {
     tag: string;
@@ -16,19 +18,10 @@ interface Props {
   }[];
 }
 
-const data = [
-  { x: 100, y: 200, z: 200 },
-  { x: 120, y: 100, z: 260 },
-  { x: 170, y: 300, z: 400 },
-  { x: 140, y: 250, z: 280 },
-  { x: 150, y: 400, z: 500 },
-  { x: 110, y: 280, z: 200 },
-];
-
 const ScatterPlot: React.FC<Props> = (props) => {
   return (
     <ResponsiveContainer width="100%" height={400}>
-      <ScatterChart margin={{ top: 10, right: 10, left: 20, bottom: 20 }}>
+      <ScatterChart margin={{ top: 10, right: 60, left: 20, bottom: 20 }}>
         <XAxis
           dataKey="growth"
           type="number"
@@ -40,7 +33,7 @@ const ScatterPlot: React.FC<Props> = (props) => {
           label={{ value: "Popularity", angle: -90, position: "left" }}
         />
         <Tooltip cursor={{ strokeDasharray: "3 3" }} />
-        <Scatter data={props.data}>
+        <Scatter data={props.data} fill={tiffanyBlue}>
           <LabelList dataKey="tag" position="right" />
         </Scatter>
       </ScatterChart>
