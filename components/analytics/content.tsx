@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import ScatterPlot from "../data-visualization/scatter-plot";
+import MultipleTimeSeriesPlot from "../data-visualization/multiple-time-series-plot";
 
 interface Props {
   category: string;
@@ -26,7 +27,11 @@ const Content: React.FC<Props> = (props) => {
     initializeData();
   }, [props.category, props.type]);
 
-  return <ScatterPlot data={data} />;
+  return props.type === "scatter" ? (
+    <ScatterPlot data={data} />
+  ) : (
+    <MultipleTimeSeriesPlot data={data} />
+  );
 };
 
 export default Content;
