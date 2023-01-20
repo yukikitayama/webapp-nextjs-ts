@@ -28,6 +28,14 @@ const AnalyticsPage = () => {
       <Grid item xs={12} md={6}>
         <Content category="database" type="time-series" />
       </Grid>
+
+      <Grid item xs={12} md={6}>
+        <Content category="backend" type="scatter" />
+      </Grid>
+
+      <Grid item xs={12} md={6}>
+        <Content category="backend" type="time-series" />
+      </Grid>
     </Grid>
   );
 };

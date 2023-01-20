@@ -9,6 +9,12 @@ export const lightPink = "#D98F8D";
 export const darkBrown = "#8C7046";
 export const lightBrown = "#D9B277";
 
+// Monochromatic
+export const darkTiffanyBlue = "#365956";
+export const lightTiffanyBlue = "#C9DfDD";
+export const darkGrayTiffanyBlue = "#505958";
+export const lightGrayTiffanyBlue = "#63A69F";
+
 export const theme = createTheme({
   palette: {
     primary: {

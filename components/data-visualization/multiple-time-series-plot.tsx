@@ -8,6 +8,30 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+import {
+  tiffanyBlue,
+  darkPink,
+  lightPink,
+  // darkBrown,
+  lightBrown,
+  darkTiffanyBlue,
+  // lightTiffanyBlue,
+  // darkGrayTiffanyBlue,
+  // lightGrayTiffanyBlue,
+} from "../../utils/style";
+
+const colors = [
+  tiffanyBlue,
+  darkPink,
+  lightPink,
+  // darkBrown,
+  lightBrown,
+  darkTiffanyBlue,
+  // lightTiffanyBlue,
+  // darkGrayTiffanyBlue,
+  // lightGrayTiffanyBlue,
+];
+
 interface Props {
   data: any[];
 }
@@ -28,8 +52,15 @@ const MultipleTimeSeriesPlot: React.FC<Props> = (props) => {
         <YAxis label={{ value: "Popularity", angle: -90, position: "left" }} />
         <Tooltip />
         <Legend />
-        {tags.map((tag) => (
-          <Line key={tag} type="monotone" dataKey={tag} dot={false} />
+        {tags.map((tag, index) => (
+          <Line
+            key={tag}
+            type="monotone"
+            dataKey={tag}
+            dot={false}
+            stroke={colors[index]}
+            strokeWidth={2}
+          />
         ))}
       </LineChart>
     </ResponsiveContainer>
