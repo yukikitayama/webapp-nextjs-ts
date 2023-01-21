@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import CircularPrograss from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 
 import ScatterPlot from "../data-visualization/scatter-plot";
 import MultipleTimeSeriesPlot from "../data-visualization/multiple-time-series-plot";
@@ -27,10 +29,19 @@ const Content: React.FC<Props> = (props) => {
     initializeData();
   }, [props.category, props.type]);
 
-  return props.type === "scatter" ? (
-    <ScatterPlot data={data} />
-  ) : (
-    <MultipleTimeSeriesPlot data={data} />
+  return (
+    <div>
+      {isLoading && (
+        <Box sx={{ textAlign: "center" }}>
+          <CircularPrograss />
+        </Box>
+      )}
+      {props.type === "scatter" ? (
+        <ScatterPlot data={data} />
+      ) : (
+        <MultipleTimeSeriesPlot data={data} />
+      )}
+    </div>
   );
 };
 
